@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app='angularTranslateApp'>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<title>Angular translate test tool</title>
+
+		<base href="/">
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/angular2-all-testing.umd.dev.js"></script> -->
+		<script src="/node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-translate/dist/angular-translate.min.js"></script>
+		<script src="node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+		<script type="text/javascript" src="web/webapp.js"></script>
+
+	</head>
+	<body ng-controller="mainController">
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Translation test</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3">
+				<select class="form-control" ng-model="myLang" ng-change="changeLanguage(myLang)">
+					<option ng-repeat="lang in availableLanguages">{{lang}}</option>
+				</select>
+			</div>
+		</div>
+
+		<br/>
+
+		<ol>
+			<li translate>{{"CASA.PUERTA"}}</li>
+			<li translate>{{"CASA.PISO"}}</li>
+			<li translate>{{"CASA.MUEBLES.SOFA"}}</li>
+			<li translate>{{"CASA.MUEBLES.CAMA"}}</li>
+			<li translate>{{"CASA.MUEBLES.MESA"}}</li>
+			<li translate>{{"PERRO"}}</li>
+			<li translate>{{"GATO"}}</li>
+			<li translate>{{"MUJER"}}</li>
+			<li translate>{{"HOMBRE"}}</li>
+			<li translate>{{"CARRO"}}</li>
+		</ol>
+
+
+	</body>
+</html>
