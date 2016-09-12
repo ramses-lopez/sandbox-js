@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='angularTranslateApp'>
+<html ng-app='sandboxApp'>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<title>Angular Node Uploader</title>
@@ -26,8 +26,21 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<form>
-					<input type="file" name="uploader">
+					<div class="row">
+ 						<div class="col-sm-6">
+			    			<input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+						</div>
+						<!-- <input type="file"
+								name="uploader"
+								ng-model="myFile"
+								ng-click="fileUpload(f)"/> -->
+						<div class="col-sm-6">
+							<input class="btn btn-default" type="button" name="button" value="go!">
+						</div>
+					</div>
 				</form>
+
+				<hr>
 
 				<div class="row">
 					<div class="col-sm-6">
@@ -43,7 +56,5 @@
 				</div>
 			</div>
 		</div>
-
-
 	</body>
 </html>
