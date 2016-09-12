@@ -2,7 +2,7 @@
 <html ng-app='angularTranslateApp'>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-		<title>Angular translate test tool</title>
+		<title>Angular Node Uploader</title>
 
 		<base href="/">
 
@@ -10,8 +10,6 @@
 
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/angular2-all-testing.umd.dev.js"></script> -->
 		<script src="/node_modules/angular/angular.js"></script>
-		<script src="node_modules/angular-translate/dist/angular-translate.min.js"></script>
-		<script src="node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
 		<script type="text/javascript" src="web/webapp.js"></script>
 
 	</head>
@@ -19,32 +17,32 @@
 
 		<div class="row">
 			<div class="col-sm-6">
-				<h1>Translation test</h1>
+				<h1>Uploader test 📸</h1>
 			</div>
 		</div>
+
+		<hr>
 
 		<div class="row">
-			<div class="col-sm-3">
-				<select class="form-control" ng-model="myLang" ng-change="changeLanguage(myLang)">
-					<option ng-repeat="lang in availableLanguages">{{lang}}</option>
-				</select>
+			<div class="col-sm-12">
+				<form>
+					<input type="file" name="uploader">
+				</form>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<h4>Preview</h4>
+						<div id="preview">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<h4>Uploaded image</h4>
+						<div id="uploaded">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<br/>
-
-		<ol>
-			<li translate>{{"CASA.PUERTA"}}</li>
-			<li translate>{{"CASA.PISO"}}</li>
-			<li translate>{{"CASA.MUEBLES.SOFA"}}</li>
-			<li translate>{{"CASA.MUEBLES.CAMA"}}</li>
-			<li translate>{{"CASA.MUEBLES.MESA"}}</li>
-			<li translate>{{"PERRO"}}</li>
-			<li translate>{{"GATO"}}</li>
-			<li translate>{{"MUJER"}}</li>
-			<li translate>{{"HOMBRE"}}</li>
-			<li translate>{{"CARRO"}}</li>
-		</ol>
 
 
 	</body>
