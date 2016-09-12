@@ -39,9 +39,7 @@ app.get('/', function(req, res){
  * Upon request, return JSON containing the temporarily-signed S3 request and the
  * anticipated URL of the image.
  */
-app.get('/sign_s3', function(req, res){
-
-    console.log('get sign s3')
+app.get('/s3_signed_url', function(req, res){
 
     aws.config.update({accessKeyId: AWS_ACCESS_KEY , secretAccessKey: AWS_SECRET_KEY });
     var s3 = new aws.S3();

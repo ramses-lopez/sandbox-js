@@ -10,10 +10,11 @@
 
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/angular2-all-testing.umd.dev.js"></script> -->
 		<script src="/node_modules/angular/angular.js"></script>
+		<script src="/node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
 		<script type="text/javascript" src="web/webapp.js"></script>
 
 	</head>
-	<body ng-controller="mainController">
+	<body class="container" ng-controller="mainController">
 
 		<div class="row">
 			<div class="col-sm-6">
@@ -28,14 +29,15 @@
 				<form>
 					<div class="row">
  						<div class="col-sm-6">
-			    			<input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+			    			<!-- <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)"> -->
+			    			<input type="file" nv-file-select="" uploader="uploader"/>
 						</div>
 						<!-- <input type="file"
 								name="uploader"
 								ng-model="myFile"
 								ng-click="fileUpload(f)"/> -->
 						<div class="col-sm-6">
-							<input class="btn btn-default" type="button" name="button" value="go!">
+							<input class="btn btn-default" type="button" name="button" value="go!" ng-click="getSignedKey()">
 						</div>
 					</div>
 				</form>
