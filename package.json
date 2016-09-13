@@ -17,8 +17,12 @@
     "angular-translate": "^2.11.1",
     "angular-translate-loader-static-files": "^2.11.1",
     "aws-sdk": "^2.6.1",
+    "browser-sync": "^2.15.0",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
+    "gulp-env": "^0.4.0",
+    "gulp-nodemon": "^2.1.0",
+    "gulp-sass": "^2.3.2",
     "http": "0.0.0",
     "lodash": "^4.15.0",
     "path": "^0.12.7"

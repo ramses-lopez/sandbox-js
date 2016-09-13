@@ -37,6 +37,7 @@ app.get('/sign', (req, res) => {
         Key: req.query.file_name,
         Expires: 60,
         ContentType: req.query.file_type,
+        // ContentType: undefined,
         ACL: 'public-read'
     };
 
@@ -49,6 +50,10 @@ app.get('/sign', (req, res) => {
                 signed_request: data,
                 url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name
             };
+			
+			console.log('data', data)
+			//data esta viniendo html encoded -_-
+			console.log('decoded', decodeURIComponent(data));
             res.write(JSON.stringify(return_data));
             res.end();
         }
@@ -56,24 +61,7 @@ app.get('/sign', (req, res) => {
 });
 
 app.put('/upload', (req, res) => {
-
     console.log(req.files)
-
-    //file, signed_request, url
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("PUT", signed_request);
-    // xhr.setRequestHeader('x-amz-acl', 'public-read');
-    // xhr.onload = function() {
-    //     if (xhr.status === 200) {
-    //         document.getElementById("preview").src = url;
-    //         document.getElementById("avatar_url").value = url;
-    //     }
-    // };
-    // xhr.onerror = function() {
-    //     alert("Could not upload file.");
-    // };
-    // xhr.send(file);
-
     res.end()
 })
 

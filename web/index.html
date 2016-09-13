@@ -30,21 +30,32 @@
 					<div class="row">
  						<div class="col-sm-6">
 			    			<!-- <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)"> -->
-			    			<input type="file" nv-file-select="" uploader="uploader"/>
+			    			<!-- <input type="file" uploader="uploader" nv-file-select/> -->
+			    			<input type="file" name="fileupload" file/>
 						</div>
 						<!-- <input type="file"
 								name="uploader"
 								ng-model="myFile"
 								ng-click="fileUpload(f)"/> -->
 						<div class="col-sm-6">
-							<input class="btn btn-default" type="button" name="button" value="go!" ng-click="getSignedKey()">
+							<input class="btn btn-default" type="button" name="button" value="go!" ng-click="upload()">
 						</div>
 					</div>
 				</form>
-
 				<hr>
-
-				<div class="row">
+				<div ng-if="errorMsg" style="overflow:scroll">
+					<h4 style="color:red">Error</h4>
+					
+					<div class="row">
+						<div class="well col-sm-12">
+							url: {{signedUrl}}
+						</div>
+						<div class="well col-sm-12">
+							{{errorMsg}}
+						</div>
+					</div>
+				</div>
+				<div class="row" ng-if="!errorMsg">
 					<div class="col-sm-6">
 						<h4>Preview</h4>
 						<div id="preview">
