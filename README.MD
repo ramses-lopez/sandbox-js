@@ -1,0 +1,1 @@
+// http://www.cheynewallace.com/uploading-to-s3-with-angularjs/

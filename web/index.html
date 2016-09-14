@@ -3,16 +3,11 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<title>Angular Node Uploader</title>
-
 		<base href="/">
-
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/2.0.0-beta.17/angular2-all-testing.umd.dev.js"></script> -->
 		<script src="/node_modules/angular/angular.js"></script>
 		<script src="/node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
 		<script type="text/javascript" src="web/webapp.js"></script>
-
 	</head>
 	<body class="container" ng-controller="mainController">
 
@@ -21,31 +16,23 @@
 				<h1>Uploader test 📸</h1>
 			</div>
 		</div>
-
 		<hr>
-
 		<div class="row">
 			<div class="col-sm-12">
 				<form>
 					<div class="row">
  						<div class="col-sm-6">
-			    			<!-- <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)"> -->
-			    			<!-- <input type="file" uploader="uploader" nv-file-select/> -->
 			    			<input type="file" name="fileupload" file/>
 						</div>
-						<!-- <input type="file"
-								name="uploader"
-								ng-model="myFile"
-								ng-click="fileUpload(f)"/> -->
 						<div class="col-sm-6">
 							<input class="btn btn-default" type="button" name="button" value="go!" ng-click="upload()">
 						</div>
 					</div>
 				</form>
 				<hr>
-				<div ng-if="errorMsg" style="overflow:scroll">
+				<div ng-if="errorMsg">
 					<h4 style="color:red">Error</h4>
-					
+
 					<div class="row">
 						<div class="well col-sm-12">
 							url: {{signedUrl}}
@@ -59,11 +46,14 @@
 					<div class="col-sm-6">
 						<h4>Preview</h4>
 						<div id="preview">
+							<img ng-src="">
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<h4>Uploaded image</h4>
 						<div id="uploaded">
+							<img class="col-sm-6" ng-src="{{uploadedImageUrl}}" id="uploadedImage"/>
+							Source <span>{{uploadedImageUrl}}</span>
 						</div>
 					</div>
 				</div>
