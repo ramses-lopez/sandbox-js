@@ -1,2 +1,1 @@
-# Sandbox NodeJS / Angular
-Test project for node scripts & simple angular pages
+// http://www.cheynewallace.com/uploading-to-s3-with-angularjs/
