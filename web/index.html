@@ -43,17 +43,22 @@
 					</div>
 				</div>
 				<div class="row" ng-if="!errorMsg">
+					
+					<div class="progress">
+						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+							<span>{{progress}}%</span>
+						</div>
+					</div>
 					<div class="col-sm-6">
 						<h4>Preview</h4>
 						<div id="preview">
-							<img ng-src="">
+							<img class="col-md-6" ng-src="{{fileread}}">
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<h4>Uploaded image</h4>
 						<div id="uploaded">
 							<img class="col-sm-6" ng-src="{{uploadedImageUrl}}" id="uploadedImage"/>
-							Source <span>{{uploadedImageUrl}}</span>
 						</div>
 					</div>
 				</div>

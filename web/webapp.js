@@ -14,6 +14,15 @@ app.directive('file', function() {
 				scope.file = file;
 				scope.$parent.file = file;
 				scope.$apply();
+				
+				var reader = new FileReader()
+				reader.onload = function (loadEvent) {
+					scope.$apply(function () {
+						scope.fileread = loadEvent.target.result
+						scope.$parent.fileread = loadEvent.target.result
+					})
+				}				
+				reader.readAsDataURL(event.target.files[0])				
 			});
 		}
 	};
@@ -35,6 +44,8 @@ app.controller('mainController', ['$rootScope',
 	$scope.signedUrl = undefined
 	$scope.errorMsg = undefined
 	$scope.uploadedImageUrl = undefined
+	$scope.progress = undefined
+	$scope.preview = undefined
 
 	var url = undefined
 
@@ -46,7 +57,20 @@ app.controller('mainController', ['$rootScope',
 			var sgn = result.data.signed_request
 			url = result.data.url
 			$scope.signedUrl = sgn
-			return $http.put(sgn, $scope.file, {headers: {'Content-Type': $scope.file.type}})
+			return $http.put(sgn, $scope.file, {
+				headers: {'Content-Type': $scope.file.type},
+				eventHandlers: {
+					progress: function(c) {
+						// console.log('Progress -> ' + c);
+						// console.log(c);
+					}
+				},
+				uploadEventHandlers: {
+					progress: function(e) {
+						$scope.progress = Math.round((e.loaded*100)/$scope.file.size)
+					}
+				}
+			})
 		})
 		.then(function(result){
 			console.log('all done!')
@@ -57,5 +81,4 @@ app.controller('mainController', ['$rootScope',
 			$scope.errorMsg = error.data
 		})
 	}
-
 }]);
