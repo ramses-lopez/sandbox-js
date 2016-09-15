@@ -1,0 +1,30 @@
+<div class="row">
+	<label class="btn btn-primary col-sm-12" for="my-file-selector">
+		<input id="my-file-selector" type="file" style="display:none;" file>
+		{{file.name ? 'Filename: ' + file.name : 'Upload file'}}
+	</label>
+	<div ng-if="preview" class="progress">
+		<div class="progress-bar progress-bar-success"
+			role="progressbar"
+			aria-valuenow="{{progress}}"
+			aria-valuemin="0"
+			aria-valuemax="100"
+			style="width: {{progress}}%">
+			<span>{{progress}} %</span>
+		</div>
+	</div>
+	<div ng-if="errorMsg">
+		<h4 class="">Error</h4>
+		<div class="row">
+			<div class="well col-sm-12">
+				{{errorMsg}}
+			</div>
+		</div>
+	</div>
+
+<div class="col-sm-12">
+	<div style="background-image: url({{preview}}); background-size: contain; background-position:center; background-repeat: no-repeat; width: 100%; height: 25vw">
+	</div>
+</div>
+	<input class="btn btn-danger btn-large col-sm-12" type="button" name="button" value="upload" ng-click="upload()">
+</div>

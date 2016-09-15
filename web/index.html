@@ -18,51 +18,16 @@
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-sm-12">
-				<form>
-					<div class="row">
- 						<div class="col-sm-6">
-			    			<input type="file" name="fileupload" file/>
-						</div>
-						<div class="col-sm-6">
-							<input class="btn btn-default" type="button" name="button" value="go!" ng-click="upload()">
-						</div>
-					</div>
-				</form>
-				<hr>
-				<div ng-if="errorMsg">
-					<h4 style="color:red">Error</h4>
-
-					<div class="row">
-						<div class="well col-sm-12">
-							url: {{signedUrl}}
-						</div>
-						<div class="well col-sm-12">
-							{{errorMsg}}
-						</div>
-					</div>
-				</div>
-				<div class="row" ng-if="!errorMsg">
-					
-					<div class="progress">
-						<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
-							<span>{{progress}}%</span>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<h4>Preview</h4>
-						<div id="preview">
-							<img class="col-md-6" ng-src="{{fileread}}">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<h4>Uploaded image</h4>
-						<div id="uploaded">
-							<img class="col-sm-6" ng-src="{{uploadedImageUrl}}" id="uploadedImage"/>
-						</div>
-					</div>
-				</div>
+			<div class="col-sm-6">
+				<label for="name">Name:</label>
+				<input class="form-control" type="text" name="name" value="">
+				<label for="email">Email:</label>
+				<input class="form-control" type="text" name="email" value="">
+			</div>
+			<div class="col-sm-6">
+				<file-uploader/>
 			</div>
 		</div>
+
 	</body>
 </html>

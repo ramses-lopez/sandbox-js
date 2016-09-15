@@ -14,19 +14,68 @@ app.directive('file', function() {
 				scope.file = file;
 				scope.$parent.file = file;
 				scope.$apply();
-				
+
+				//objeto para permitir el preview de la imagen
+				//TODO: limitar a los tipos de imagen conocidos
 				var reader = new FileReader()
 				reader.onload = function (loadEvent) {
 					scope.$apply(function () {
-						scope.fileread = loadEvent.target.result
-						scope.$parent.fileread = loadEvent.target.result
+						scope.preview = loadEvent.target.result
+
+						console.log(scope.preview);
+
+						scope.$parent.preview = loadEvent.target.result
 					})
-				}				
-				reader.readAsDataURL(event.target.files[0])				
+				}
+				reader.readAsDataURL(event.target.files[0])
 			});
 		}
 	};
 });
+
+app.directive('fileUploader', ['$http', function($http) {
+	return {
+		templateUrl: '/web/file-uploader/file-uploader-directive.html',
+		restrict: 'E',
+		scope: {
+			file: '@'
+		},
+		link: function(scope, el, attrs){
+			scope.file = undefined
+			scope.preview = undefined
+			scope.signedUrl = undefined
+			scope.errorMsg = undefined
+			scope.uploadedImageUrl = undefined
+			scope.progress = 0
+			var tmpUrl = undefined
+
+			scope.upload = function(){
+				$http.get(`http://localhost:5002/sign?file_name=${scope.file.name}&file_type=${scope.file.type}`)
+				.then(function(result){
+					scope.signedUrl = result.data.signed_request
+					tmpUrl = result.data.url
+					return $http.put(scope.signedUrl, scope.file, {
+						headers: {'Content-Type': scope.file.type},
+						eventHandlers: {
+							progress: function(c) {
+								// console.log('Progress ->', c);
+							}
+						},
+						uploadEventHandlers: { progress: function(e) { scope.progress = Math.round((e.loaded*100)/scope.file.size) } }
+					})
+				})
+				.then(function(result){
+					console.log('done');
+					scope.uploadedImageUrl = tmpUrl
+				})
+				.catch(function(error){
+					console.log(error)
+					scope.errorMsg = error.data
+				})
+			}
+		}
+	};
+}]);
 
 app.controller('mainController', ['$rootScope',
 	'$scope',
@@ -41,44 +90,5 @@ app.controller('mainController', ['$rootScope',
 		FileUploader,
 		$http) {
 
-	$scope.signedUrl = undefined
-	$scope.errorMsg = undefined
-	$scope.uploadedImageUrl = undefined
-	$scope.progress = undefined
-	$scope.preview = undefined
-
-	var url = undefined
-
-	$scope.upload = function(){
-		console.log($scope.file)
-		$http.get(`http://localhost:5002/sign?file_name=${$scope.file.name}&file_type=${$scope.file.type}`)
-		.then(function(result){
-			console.log(result)
-			var sgn = result.data.signed_request
-			url = result.data.url
-			$scope.signedUrl = sgn
-			return $http.put(sgn, $scope.file, {
-				headers: {'Content-Type': $scope.file.type},
-				eventHandlers: {
-					progress: function(c) {
-						// console.log('Progress -> ' + c);
-						// console.log(c);
-					}
-				},
-				uploadEventHandlers: {
-					progress: function(e) {
-						$scope.progress = Math.round((e.loaded*100)/$scope.file.size)
-					}
-				}
-			})
-		})
-		.then(function(result){
-			console.log('all done!')
-			$scope.uploadedImageUrl = url
-		})
-		.catch(function(error){
-			console.log(error)
-			$scope.errorMsg = error.data
-		})
 	}
-}]);
+]);
